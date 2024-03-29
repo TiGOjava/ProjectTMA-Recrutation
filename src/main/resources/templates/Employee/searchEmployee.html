@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            padding: 5px 10px;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<h1>Search Results</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>ItemGroup</th>
+        <th>Name</th>
+        <th>Unit</th>
+        <th>Quantity</th>
+        <th>priceNetto</th>
+        <th>Status</th>
+        <th>StorageLocation</th>
+        <th>FirstName</th>
+        <th>SecondName</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.itemGroup}"></td>
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.unit}"></td>
+        <td th:text="${item.quantity}"></td>
+        <td th:text="${item.priceNetto}"></td>
+        <td th:text="${item.status}"></td>
+        <td th:text="${item.storageLocation}"></td>
+        <td th:text="${item.firstName}"></td>
+        <td th:text="${item.secondName}"></td>
+        <td>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<h1>Edit Product</h1>
+<form action="#" th:action="@{/edit/{id}(id=${item.id})}" th:object="${item}" method="post">
+
+    <div>
+        <label for="itemGroup">Item group:</label>
+        <select id="itemGroup" th:field="*{itemGroup}">
+            <option th:each="group : ${itemGroups}" th:value="${group}" th:text="${group}"></option>
+        </select>
+    </div>
+
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}"/><br/>
+    </div>
+
+    <div>
+        <label for="unit">Unit:</label>
+        <select id="unit" th:field="*{unit}">
+            <option th:each="unit : ${units}" th:value="${unit}" th:text="${unit}"></option>
+        </select>
+    </div>
+
+    <div>
+        <label for="quantity">Quantity:</label>
+        <input type="text" id="quantity" th:field="*{quantity}"/><br/>
+    </div>
+
+    <div>
+        <label for="priceNetto">Price netto:</label>
+        <input type="text" id="priceNetto" th:field="*{priceNetto}"/><br/>
+    </div>
+
+    <div>
+        <label for="status">Status:</label>
+        <select id="status" th:field="*{status}">
+            <option th:each="status : ${statuses}" th:value="${status}" th:text="${status}"></option>
+        </select>
+    </div>
+
+    <div>
+        <label for="storageLocation">Storage Location:</label>
+        <input type="text" id="storageLocation" th:field="*{storageLocation}"/><br/>
+    </div>
+
+    <div>
+        <label for="firstName">First name:</label>
+        <input type="text" id="firstName" th:field="*{firstName}"/><br/>
+    </div>
+
+    <div>
+        <label for="secondName">Second name:</label>
+        <input type="text" id="secondName" th:field="*{secondName}"/><br/>
+    </div>
+
+    <div>
+        <input type="submit" value="Save"/>
+    </div>
+</form>
+</body>
+</html>

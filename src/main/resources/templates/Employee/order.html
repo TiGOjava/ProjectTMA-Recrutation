@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        form {
+            width: 50%;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 10px);
+            padding: 8px;
+            margin: 5px 0 15px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"],
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover,
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button {
+            margin-left: 10px;
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+<h1>Add Product</h1>
+<form id="productForm" th:action="@{/order}" th:object="${order}" method="post">
+
+    <label>Name:</label>
+    <input type="text" id="productName" oninput="updateProductFields()" th:field="*{name}"/><br/>
+
+    <label>Id:</label>
+    <span id="productId" th:text="${order.id}"></span><br/>
+
+    <label>Unit:</label>
+    <span id="unit" th:text="${order.unit}"></span><br/>
+
+    <label>Quantity:</label>
+    <input type="text" th:field="*{quantity}"/><br/>
+
+    <label>Price netto:</label>
+    <span id="priceNetto" th:text="${order.priceNetto}"></span><br/>
+
+    <label>Comment:</label>
+    <input type="text" th:field="*{comment}"/><br/>
+
+    <input type="submit" value="Submit"/>
+
+    <button type="button" onclick="cancel()">Cancel</button>
+</form>
+
+<script th:inline="javascript">
+    function updateProductFields() {
+        const productName = document.getElementById('productName').value;
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', '/getProductDetails?name=' + encodeURIComponent(productName), true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var productDetails = JSON.parse(xhr.responseText);
+                    document.getElementById('productId').innerText = productDetails.id;
+                    document.getElementById('unit').innerText = productDetails.unit;
+                    document.getElementById('priceNetto').innerText = productDetails.priceNetto;
+                } else {
+                    console.error('Failed to fetch product details');
+                }
+            }
+        };
+        xhr.send();
+    }
+
+    function cancel() {
+        window.location.href = '/home';
+    }
+</script>
+
+</body>
+</html>

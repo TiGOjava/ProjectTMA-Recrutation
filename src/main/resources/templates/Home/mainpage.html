@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Przykładowa strona</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      text-align: center;
+    }
+    .header {
+      background-color: #343a40;
+      color: #fff;
+      padding: 20px 0;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .button {
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 18px;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-right: 20px;
+      transition: background-color 0.3s ease;
+    }
+    .button-coordinator {
+      background-color: #28a745; /* Zielony kolor */
+    }
+    .button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <h1 style="margin: 0;">Welcome in TMA</h1>
+</div>
+<div class="container">
+  <h2 style="margin-bottom: 30px;">Select user type</h2>
+  <div>
+    <a th:href="@{/home}" class="button">Employee</a>
+    <a th:href="@{/login}" class="button button-coordinator">Coordinator</a>
+  </div>
+</div>
+</body>
+</html>
